@@ -54,7 +54,8 @@ class ReceiptVaultScreen extends ConsumerWidget {
                         // Determine name
                         String name = tx.description;
                         if (name.isEmpty && tx.relatedId != null) {
-                          final driver = drivers.where((d) => d.id == tx.relatedId).firstOrNull;
+                          final driverMatches = drivers.where((d) => d.id == tx.relatedId);
+                          final driver = driverMatches.isNotEmpty ? driverMatches.first : null;
                           if (driver != null) {
                             name = '${driver.name} Invoice';
                           }

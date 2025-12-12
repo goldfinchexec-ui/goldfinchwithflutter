@@ -85,7 +85,8 @@ class ClientInvoicesScreen extends ConsumerWidget {
                       separatorBuilder: (c, i) => const Divider(height: 1),
                       itemBuilder: (context, index) {
                         final invoice = clientInvoices[index];
-                        final client = clients.where((c) => c.id == invoice.relatedId).firstOrNull;
+                        final clientMatches = clients.where((c) => c.id == invoice.relatedId);
+                        final client = clientMatches.isNotEmpty ? clientMatches.first : null;
                         final clientName = client?.name ?? 'Unknown Client';
                         final currencyFormat = NumberFormat.simpleCurrency(name: 'GBP');
                         final dateFormat = DateFormat('MMMM yyyy');

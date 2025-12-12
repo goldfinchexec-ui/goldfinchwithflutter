@@ -86,7 +86,8 @@ class DriverInvoicesScreen extends ConsumerWidget {
                       separatorBuilder: (c, i) => const Divider(height: 1),
                       itemBuilder: (context, index) {
                         final invoice = driverInvoices[index];
-                        final driver = drivers.where((d) => d.id == invoice.relatedId).firstOrNull;
+                        final driverMatches = drivers.where((d) => d.id == invoice.relatedId);
+                        final driver = driverMatches.isNotEmpty ? driverMatches.first : null;
                         final driverName = driver?.name ?? 'Unknown Driver';
                         final currencyFormat = NumberFormat.simpleCurrency(name: 'GBP');
                         final dateFormat = DateFormat('dd MMM');

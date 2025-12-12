@@ -79,12 +79,14 @@ class DatabaseService {
   // Helpers
   Driver? getDriver(String? id) {
     if (id == null) return null;
-    return _drivers.where((d) => d.id == id).firstOrNull;
+    final found = _drivers.where((d) => d.id == id);
+    return found.isNotEmpty ? found.first : null;
   }
 
   Client? getClient(String? id) {
     if (id == null) return null;
-    return _clients.where((c) => c.id == id).firstOrNull;
+    final found = _clients.where((c) => c.id == id);
+    return found.isNotEmpty ? found.first : null;
   }
 }
 
